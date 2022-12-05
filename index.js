@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const authRouter = require('./routers/authRouter')
+const authRouter = require('./Router/authRouter')
 
 const morgan = require("morgan");
 const cors = require("cors");

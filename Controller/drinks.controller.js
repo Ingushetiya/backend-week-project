@@ -12,14 +12,8 @@ const drinksCont = {
     },
     postdrink: async (req, res) => {
       try {
-        const [title, image, price, description, weight, categories] = req.body;
         const drink = await Drink.create({
-          title,
-          image,
-          price,
-          description,
-          weight,
-          categories,
+          ...req.body
         });
   
         res.json(drink);
@@ -29,15 +23,9 @@ const drinksCont = {
     },
     patchdrink: async (req, res) => {
       try {
-        const [title, image, price, description, weight, categories] = req.body;
   
         const drink = await Drink.findByIdAndRemove(req.params.id, {
-          title,
-          image,
-          price,
-          description,
-          weight,
-          categories,
+          ...req.body
         });
   
         res.json(drink);

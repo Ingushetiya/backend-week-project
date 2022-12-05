@@ -12,14 +12,9 @@ const fastfoodCont = {
   },
   postfastfood: async (req, res) => {
     try {
-      const [title, image, price, description, weight, categories] = req.body;
+      
       const fastfood = await Fastfood.create({
-        title,
-        image,
-        price,
-        description,
-        weight,
-        categories,
+       ...req.body
       });
 
       res.json(fastfood);

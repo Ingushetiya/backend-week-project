@@ -12,14 +12,9 @@ const saladsCont = {
     },
     postSalad: async (req, res) => {
       try {
-        const [title, image, price, description, weight, categories] = req.body;
+        
         const salad = await Salad.create({
-          title,
-          image,
-          price,
-          description,
-          weight,
-          categories,
+          ...req.body
         });
   
         res.json(salad);
@@ -29,15 +24,10 @@ const saladsCont = {
     },
     patchSalad: async (req, res) => {
       try {
-        const [title, image, price, description, weight, categories] = req.body;
+        
   
         const salad = await Salad.findByIdAndRemove(req.params.id, {
-          title,
-          image,
-          price,
-          description,
-          weight,
-          categories,
+          ...req.body
         });
   
         res.json(salad);

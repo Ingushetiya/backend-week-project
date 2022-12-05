@@ -12,11 +12,9 @@ const categCont = {
     },
     postCategory: async (req, res) => {
       try {
-        const [fastfood,drinks,salads] = req.body;
+       
         const category = await Category.create({
-          fastfood,
-          salads,
-          drinks
+          ...req.body
         });
   
         res.json(category);

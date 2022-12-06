@@ -13,10 +13,7 @@ require("dotenv").config();
 const { PORT, MONGO_DB } = process.env;
 app.use(cors());
 app.use(morgan("dev"));
-app.use(require('./Router/categories.route'));
-app.use(require('./Router/drinks.route'));
-app.use(require('./Router/fastfood.route'));
-app.use(require('./Router/salads.route'));
+app.use(require('./Router/product.route'));
 
 mongoose.connect(MONGO_DB)
   .then(() => {

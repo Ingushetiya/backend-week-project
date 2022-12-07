@@ -20,14 +20,14 @@ module.exports.authController = {
       if (!errors.isEmpty()) {
         return res
           .status(400)
-          .json({ message: "ошибка при регистрации", errors });
+          .json({ error: "Ошибка при регистрации", errors });
       }
       const { login, password } = req.body;
       const candidate = await User.findOne({ login });
       if (candidate) {
         return res
           .status(400)
-          .json({ message: "пользователь с таким логином уже существует" });
+          .json({ error: "Логин занят!" });
       }
       const hashedPassword = bcrypt.hashSync(password, 7);
 
@@ -38,10 +38,10 @@ module.exports.authController = {
       await Basket.create({
         userId: user._id,
       });
-      return res.json({ message: "успешная регистрация" });
+      return res.json({ message: "Успешная регистрация" });
     } catch (error) {
       console.log(errror);
-      res.sratus(400).json({ message: "ошибка регистрации" });
+      res.sratus(400).json({ error: "Ошибка регистрации" });
     }
   },
   login: async (req, res) => {
@@ -49,11 +49,11 @@ module.exports.authController = {
       const { login, password } = req.body;
       const user = await User.findOne({ login });
       if (!user) {
-        return res.status(400).json({ message: "пользователь  не найден" });
+        return res.status(400).json({ error: "Пользователь  не найден" });
       }
       const validationPassword = bcrypt.compareSync(password, user.password);
       if (!validationPassword) {
-        return res.status(400).json({ message: "неправильный пароль" });
+        return res.status(400).json({ error: "Неправильный пароль" });
       }
       const token = generateAccesToken(user._id, user.login);
 

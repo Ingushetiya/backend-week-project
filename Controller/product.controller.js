@@ -7,7 +7,7 @@ const productController = {
   
         res.json(product);
       } catch (error) {
-        res.json(message);
+        res.json({error: error.toString()});
       }
     },
     postProduct: async (req, res) => {
@@ -18,7 +18,7 @@ const productController = {
   
         res.json(product);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
     patchProduct: async (req, res) => {
@@ -30,7 +30,7 @@ const productController = {
   
         res.json(product);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
     deleteProduct: async (req, res) => {
@@ -38,7 +38,7 @@ const productController = {
         const product = await Product.findByIdAndDelete(req.params.id);
         res.json(product);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
   };

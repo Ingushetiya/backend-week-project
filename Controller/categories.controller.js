@@ -7,7 +7,7 @@ const categCont = {
   
         res.json(category);
       } catch (error) {
-        res.json(message);
+        res.json({error: error.toString()});
       }
     },
     postCategory: async (req, res) => {
@@ -19,7 +19,7 @@ const categCont = {
   
         res.json(category);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
     patchCategory: async (req, res) => {
@@ -34,7 +34,7 @@ const categCont = {
   
         res.json(category);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
     deleteCategory: async (req, res) => {
@@ -42,7 +42,7 @@ const categCont = {
         const category = await Category.findByIdAndDelete(req.params.id);
         res.json(category);
       } catch (error) {
-        res.json(error.message);
+        res.json({error: error.toString()});
       }
     },
   };

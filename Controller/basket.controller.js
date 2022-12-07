@@ -1,7 +1,6 @@
 const Basket = require("../Models/Basket.model");
-
 module.exports.basketController = {
-  getBasket: async (req, res) => {
+ getBasket: async (req, res) => {
     try {
       const basket = await Basket.find({});
       res.json(basket);
@@ -9,22 +8,23 @@ module.exports.basketController = {
       res.json({error: error.toString()});
     }
   },
-  postBasket: async (req, res) => {
+  getBasketById: async (req, res)=>{
+
     try {
-      const basket = await Basket.create({
-        ...req.body,
-      });
-      res.json(basket);
+      const basket = await Basket.findOne({userId: req.user.id})
+      console.log(req.user.id);
+      res.json(basket)
     } catch (error) {
-        res.json({error: error.toString()});
+      res.json({error: error.toString()})
     }
   },
-
   patchBasket: async (req, res) => {
     try {
       const basket = await Basket.findByIdAndUpdate(req.params.id, {
-        ...req.body,
-      });
+       $addToSet: {
+        products: req.body.products
+       }
+      }, {new: true});
       res.json(basket);
     } catch (error) {
         res.json({error: error.toString()});
@@ -41,3 +41,17 @@ module.exports.basketController = {
     }
   },
 };
+
+        // postBasket: async (req, res) => {
+        //   const {productId, userId} = req.body
+        //   try {
+        //     const basket = await Basket.create({
+        //       userId: userId,
+      
+              
+        //     });
+        //     res.json(basket);
+        //   } catch (error) {
+        //       res.json({error: error.toString()});
+        //   }
+        // },

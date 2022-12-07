@@ -11,12 +11,10 @@ const categCont = {
       }
     },
     postCategory: async (req, res) => {
-      try {
-       
+      try {      
         const category = await Category.create({
           ...req.body
-        });
-  
+        }); 
         res.json(category);
       } catch (error) {
         res.json({error: error.toString()});

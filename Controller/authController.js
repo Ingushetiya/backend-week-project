@@ -40,7 +40,6 @@ module.exports.authController = {
       });
       return res.json({ message: "Успешная регистрация" });
     } catch (error) {
-      console.log(errror);
       res.sratus(400).json({ error: "Ошибка регистрации" });
     }
   },

@@ -15,7 +15,7 @@ const basketSchema = mongoose.Schema({
             default:1
         }
 }],
-    total: Number
+    // total: Number
 }) 
 
 const Basket = mongoose.model("Basket", basketSchema )
